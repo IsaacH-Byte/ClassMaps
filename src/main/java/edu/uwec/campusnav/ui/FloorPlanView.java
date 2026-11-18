@@ -18,14 +18,7 @@ import edu.uwec.campusnav.R;
 
 /**
  * PLACEHOLDER indoor floor plan, matching the "303 Route (inside)" and
- * "303 Route (Access)" wireframes: rooms down both sides, a center block,
- * stairs in the corners, an elevator at the top and the entrance at the bottom.
- *
- * It draws one generic layout for every building. Routing rules:
- *  - Stairs route: entrance -> bottom-left stairs, up each floor, then to the room.
- *  - Elevator route (accessible): entrance -> elevator, straight to the room's floor.
- *
- * TODO (indoor team): load a real floor plan per building/floor (image or
+ * still needs real floor plan per building/floor (image or
  * vector) and real room positions. Keep {@link #configure} as the entry point.
  */
 public class FloorPlanView extends View {
