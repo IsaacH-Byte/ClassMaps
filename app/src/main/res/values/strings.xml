@@ -55,4 +55,45 @@
     <string name="select_location_button">Select Location</string>
     <string name="please_select_hazard_msg">Please select a hazard type</string>
     <string name="select_location_msg_prefix">Select location for: </string>
+  
+  <!-- Schedule screen -->
+    <string name="schedule_app_label">Schedule</string>
+    <string name="schedule_title">My Schedule</string>
+    <string name="schedule_empty">No classes yet. Add one below.</string>
+    <string name="add_class_button">+ Add a Class</string>
+
+    <!-- Add a Class pop-up -->
+    <string name="add_class_title">Add a Class</string>
+    <string name="class_name_label">Class Name</string>
+    <string name="class_name_hint">e.g. HCI 350</string>
+    <string name="lecture_hall_label">Lecture Hall</string>
+    <string name="room_number_label">Room Number</string>
+    <string name="room_number_hint">e.g. 117</string>
+    <string name="time_label">Time</string>
+    <string name="start_time_placeholder">Start</string>
+    <string name="end_time_placeholder">End</string>
+    <string name="time_separator">to</string>
+    <string name="days_label">Days</string>
+    <string name="day_mon">M</string>
+    <string name="day_tue">T</string>
+    <string name="day_wed">W</string>
+    <string name="day_thu">Th</string>
+    <string name="day_fri">F</string>
+    <string name="save_class_button">Add Class</string>
+    <string name="cancel_button">Cancel</string>
+
+    <!-- Add a Class validation / feedback -->
+    <string name="error_required">Required</string>
+    <string name="error_pick_times">Please pick a start and end time</string>
+    <string name="error_end_before_start">End time must be after start time</string>
+    <string name="error_pick_day">Please pick at least one day</string>
+    <string name="class_added_msg">Class added</string>
+
+    <!-- Lecture halls for the dropdown (same buildings as the campus map) -->
+    <string-array name="lecture_halls">
+        <item>Centennial Hall</item>
+        <item>Hibbard Hall</item>
+        <item>Phillips Hall</item>
+        <item>Schneider Hall</item>
+    </string-array>
 </resources>
