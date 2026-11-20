@@ -96,4 +96,11 @@
         <item>Phillips Hall</item>
         <item>Schneider Hall</item>
     </string-array>
+
+    <string-array name="building_options">
+        <item>Schneider</item>
+        <item>Centennial</item>
+        <item>Phillips</item>
+        <item>Hibbard</item>
+    </string-array>
 </resources>
