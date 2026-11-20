@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<!--
+  VIEW IDs USED BY ScheduleActivity.java (Schedule Screen):
+    * class_list_container (LinearLayout) : Holds one item_scheduled_class row per saved class.
+    * empty_schedule_text (TextView)      : Shown while the schedule has no classes.
+    * add_class_button (Button)           : Opens the "Add a Class" pop-up (dialog_add_class.xml).
+-->
+
+
+<!-- Same structure as the survey screen: map image behind a banner and a white card -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Background map layer (matches activity_main.xml) -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="top"
+        android:contentDescription="@string/map_background_desc"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_launcher_background" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <!-- Top banner with a semi transparent white card background -->
+        <TextView
+            style="@style/SurveyHeadingText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="#E6FFFFFF"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="@string/schedule_title"
+            android:textSize="22sp" />
+
+        <!-- Central card holding the class list and the add button -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="#F2FFFFFF"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/empty_schedule_text"
+                style="@style/BaseSurveyText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:gravity="center"
+                android:text="@string/schedule_empty" />
+
+            <!-- Scrollable list of added classes -->
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:fadeScrollbars="false">
+
+                <LinearLayout
+                    android:id="@+id/class_list_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </ScrollView>
+
+            <!-- 1dp divider, same as the hazard report screen -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="#CCCCCC" />
+
+            <!-- Primary contained action button -->
+            <Button
+                android:id="@+id/add_class_button"
+                style="@style/PrimaryActionButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/add_class_button" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

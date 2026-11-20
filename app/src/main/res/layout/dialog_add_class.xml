@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<!--
+  VIEW IDs USED BY ScheduleActivity.java ("Add a Class" pop-up):
+    * class_name_input (EditText)      : Class name, required.
+    * lecture_hall_spinner (Spinner)   : Dropdown of lecture halls (R.array.lecture_halls).
+    * room_number_input (EditText)     : Room number, required.
+    * start_time_button,
+      end_time_button (Button)         : Open a TimePickerDialog; show the chosen time.
+    * day_mon .. day_fri (CheckBox)    : Days the class meets; at least one required.
+    * save_class_button (Button)       : Validates input and adds the class to the schedule.
+    * cancel_class_button (Button)     : Closes the pop-up without saving.
+-->
+
+
+<!-- ScrollView so the form still fits on small screens when the keyboard is open -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF">
+
+    <!-- White card styled like the survey card -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            style="@style/SurveyHeadingText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:text="@string/add_class_title" />
+
+        <!-- Class Name -->
+        <TextView
+            style="@style/BaseSurveyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/class_name_label" />
+
+        <EditText
+            android:id="@+id/class_name_input"
+            style="@style/FormInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:hint="@string/class_name_hint"
+            android:importantForAutofill="no"
+            android:inputType="textCapWords" />
+
+        <!-- Lecture Hall dropdown -->
+        <TextView
+            style="@style/BaseSurveyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="@string/lecture_hall_label" />
+
+        <Spinner
+            android:id="@+id/lecture_hall_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:background="#E0E0E0"
+            android:popupBackground="#FFFFFF"
+            android:spinnerMode="dropdown" />
+
+        <!-- Room Number -->
+        <TextView
+            style="@style/BaseSurveyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/room_number_label" />
+
+        <EditText
+            android:id="@+id/room_number_input"
+            style="@style/FormInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:hint="@string/room_number_hint"
+            android:importantForAutofill="no"
+            android:inputType="textCapCharacters" />
+
+        <!-- Time frame: start and end, each opens a time picker -->
+        <TextView
+            style="@style/BaseSurveyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="@string/time_label" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/start_time_button"
+                style="@style/TimeBoxButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/start_time_placeholder" />
+
+            <TextView
+                style="@style/SwitchSideLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/time_separator" />
+
+            <Button
+                android:id="@+id/end_time_button"
+                style="@style/TimeBoxButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/end_time_placeholder" />
+        </LinearLayout>
+
+        <!-- Days of the week -->
+        <TextView
+            style="@style/BaseSurveyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="@string/days_label" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/day_mon"
+                style="@style/DayCheckBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/day_mon" />
+
+            <CheckBox
+                android:id="@+id/day_tue"
+                style="@style/DayCheckBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/day_tue" />
+
+            <CheckBox
+                android:id="@+id/day_wed"
+                style="@style/DayCheckBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/day_wed" />
+
+            <CheckBox
+                android:id="@+id/day_thu"
+                style="@style/DayCheckBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/day_thu" />
+
+            <CheckBox
+                android:id="@+id/day_fri"
+                style="@style/DayCheckBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/day_fri" />
+        </LinearLayout>
+
+        <!-- Same button hierarchy as the survey: contained primary, text secondary -->
+        <Button
+            android:id="@+id/save_class_button"
+            style="@style/PrimaryActionButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@string/save_class_button" />
+
+        <Button
+            android:id="@+id/cancel_class_button"
+            style="@style/SecondaryActionButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel_button" />
+    </LinearLayout>
+</ScrollView>

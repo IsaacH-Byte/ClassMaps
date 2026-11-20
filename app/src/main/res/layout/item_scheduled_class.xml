@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<!--
+  One row in the schedule list (inflated by ScheduleActivity.addClassRow):
+    * class_row_name (TextView)     : Class name.
+    * class_row_location (TextView) : "Lecture hall + room".
+    * class_row_when (TextView)     : "Days | start - end".
+-->
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:background="#E0E0E0"
+    android:orientation="vertical"
+    android:padding="12dp">
+
+    <TextView
+        android:id="@+id/class_row_name"
+        style="@style/SurveyHeadingText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/class_row_location"
+        style="@style/BaseSurveyText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/class_row_when"
+        style="@style/BaseSurveyText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>
