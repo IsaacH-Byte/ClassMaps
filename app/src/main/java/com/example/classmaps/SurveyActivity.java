@@ -1,42 +1,26 @@
 package com.example.classmaps;
 
-import android.graphics.Color;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Switch;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-// SurveyActivity manages both the Survey screen and the Hazard Report screen
+// SurveyActivity manages the Route Completed survey screen and launches HazardReportActivity if an obstacle is reported
 public class SurveyActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private boolean isOnHazardScreen = false;
-
-    // Survey screen views and state
     private Button[] starButtons;
     private Switch obstacleSwitch;
     private Switch roomSwitch;
     private int selectedRating = 0;
 
-    // Hazard report screen views and state
-    private TextView selectedHazardTypeText;
-    private Button[] hazardOptionButtons;
-    private String selectedHazardType = "";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        showSurveyScreen();
-    }
-
-    // Loads the survey layout and binds click listeners
-    private void showSurveyScreen() {
-        isOnHazardScreen = false;
         setContentView(R.layout.activity_survey);
-        selectedRating = 0;
 
         starButtons = new Button[] {
                 (Button) findViewById(R.id.star_1),
@@ -60,38 +44,10 @@ public class SurveyActivity extends AppCompatActivity implements View.OnClickLis
         maybeLaterButton.setOnClickListener(this);
     }
 
-    // Loads hazard report layout and binds click listeners
-    private void showHazardReportScreen() {
-        isOnHazardScreen = true;
-        setContentView(R.layout.activity_hazard_report);
-
-        selectedHazardType = "";
-        selectedHazardTypeText = (TextView) findViewById(R.id.selected_hazard_type_text);
-
-        Button backButton = (Button) findViewById(R.id.back_button);
-        Button selectLocationButton = (Button) findViewById(R.id.select_location_button);
-        backButton.setOnClickListener(this);
-        selectLocationButton.setOnClickListener(this);
-
-        hazardOptionButtons = new Button[] {
-                (Button) findViewById(R.id.hazard_ice),
-                (Button) findViewById(R.id.hazard_construction),
-                (Button) findViewById(R.id.hazard_closure),
-                (Button) findViewById(R.id.hazard_obstacle),
-                (Button) findViewById(R.id.hazard_wet),
-                (Button) findViewById(R.id.hazard_car)
-        };
-
-        for (int i = 0; i < hazardOptionButtons.length; i++) {
-            hazardOptionButtons[i].setOnClickListener(this);
-        }
-    }
-
     @Override
     public void onClick(View v) {
         int id = v.getId();
 
-        // --- Survey Screen Events ---
         if (id == R.id.star_1) {
             updateRating(1);
         } else if (id == R.id.star_2) {
@@ -114,48 +70,15 @@ public class SurveyActivity extends AppCompatActivity implements View.OnClickLis
                     + " | Found room: " + (foundRoomEasily ? yesText : noText);
             Toast.makeText(this, summary, Toast.LENGTH_SHORT).show();
 
-            // Open Hazard Report screen if the user switched "Encounter obstacle?" to Yes
+            // Open HazardReportActivity if the user switched "Encounter obstacle?" to Yes
             if (encounteredObstacle) {
-                showHazardReportScreen();
+                startActivity(new Intent(this, HazardReportActivity.class));
             } else {
                 finish();
             }
         } else if (id == R.id.maybe_later_button) {
             Toast.makeText(this, getString(R.string.survey_dismissed_msg), Toast.LENGTH_SHORT).show();
             finish();
-
-            // --- Hazard Report Screen Events ---
-        } else if (id == R.id.back_button) {
-            showSurveyScreen();
-        } else if (id == R.id.hazard_ice) {
-            selectHazardType(R.string.hazard_ice, (Button) v);
-        } else if (id == R.id.hazard_construction) {
-            selectHazardType(R.string.hazard_construction, (Button) v);
-        } else if (id == R.id.hazard_closure) {
-            selectHazardType(R.string.hazard_closure, (Button) v);
-        } else if (id == R.id.hazard_obstacle) {
-            selectHazardType(R.string.hazard_obstacle, (Button) v);
-        } else if (id == R.id.hazard_wet) {
-            selectHazardType(R.string.hazard_wet, (Button) v);
-        } else if (id == R.id.hazard_car) {
-            selectHazardType(R.string.hazard_car, (Button) v);
-        } else if (id == R.id.select_location_button) {
-            if (selectedHazardType.equals("")) {
-                Toast.makeText(this, getString(R.string.please_select_hazard_msg), Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, getString(R.string.select_location_msg_prefix) + selectedHazardType, Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-
-    // Pressing the phone's system Back button on Hazard Report returns to the Survey screen
-    @SuppressWarnings("deprecation")
-    @Override
-    public void onBackPressed() {
-        if (isOnHazardScreen) {
-            showSurveyScreen();
-        } else {
-            super.onBackPressed();
         }
     }
 
@@ -169,18 +92,5 @@ public class SurveyActivity extends AppCompatActivity implements View.OnClickLis
                 starButtons[i].setText(getString(R.string.star_unselected));
             }
         }
-    }
-
-    // Updates the "..." text box and highlights the chosen hazard button
-    private void selectHazardType(int stringResId, Button selectedButton) {
-        selectedHazardType = getString(stringResId);
-        selectedHazardTypeText.setText(selectedHazardType);
-
-        for (int i = 0; i < hazardOptionButtons.length; i++) {
-            hazardOptionButtons[i].setTextColor(Color.BLACK);
-            hazardOptionButtons[i].setBackgroundColor(Color.TRANSPARENT);
-        }
-        selectedButton.setTextColor(Color.parseColor("#3F51B5"));
-        selectedButton.setBackgroundColor(Color.parseColor("#E0E0E0"));
     }
 }
