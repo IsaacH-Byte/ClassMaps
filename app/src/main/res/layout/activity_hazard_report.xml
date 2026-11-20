@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<!--
+  VIEW IDs USED BY MainActivity.java (Hazard Report Screen):
+    * back_button (Button)                  : Returns to the survey screen.
+    * selected_hazard_type_text (TextView)  : Displays "..." or the chosen hazard type.
+    * hazard_ice, hazard_construction,
+      hazard_closure, hazard_obstacle,
+      hazard_wet, hazard_car (Button)       : Scrollable hazard type options.
+    * select_location_button (Button)       : Validates selection and proceeds to location step.
+-->
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <!-- RelativeLayout pins the back button left and centers the title + warning icon across the full width -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp">
+
+        <Button
+            android:id="@+id/back_button"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:text="@string/back_arrow"
+            android:textAllCaps="false"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/SurveyHeadingText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="8dp"
+                android:text="@string/hazard_report_title"
+                android:textSize="22sp" />
+
+            <!-- Built in Android warning triangle icon -->
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:contentDescription="@string/warning_icon_desc"
+                android:src="@android:drawable/ic_dialog_alert" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <!-- Middle weighted section containing "Type:" and the scrollable hazard list -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/BaseSurveyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingRight="16dp"
+            android:text="@string/hazard_type_label"
+            android:textSize="18sp" />
+
+        <!-- Right column - selected value box ("...") above a distinct scrollable list container -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <!-- Selected hazard display box -->
+            <TextView
+                android:id="@+id/selected_hazard_type_text"
+                style="@style/BaseSurveyText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:background="#E0E0E0"
+                android:padding="12dp"
+                android:text="@string/hazard_type_placeholder"
+                android:textSize="18sp" />
+
+            <!-- Scrollable hazard list with visible scrollbar -->
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="#F5F5F5"
+                android:fadeScrollbars="false"
+                android:padding="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/hazard_ice"
+                        style="@style/HazardOptionButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/hazard_ice" />
+
+                    <Button
+                        android:id="@+id/hazard_construction"
+                        style="@style/HazardOptionButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/hazard_construction" />
+
+                    <Button
+                        android:id="@+id/hazard_closure"
+                        style="@style/HazardOptionButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/hazard_closure" />
+
+                    <Button
+                        android:id="@+id/hazard_obstacle"
+                        style="@style/HazardOptionButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/hazard_obstacle" />
+
+                    <Button
+                        android:id="@+id/hazard_wet"
+                        style="@style/HazardOptionButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/hazard_wet" />
+
+                    <Button
+                        android:id="@+id/hazard_car"
+                        style="@style/HazardOptionButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/hazard_car" />
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- 1dp horizontal divider line separating the hazard list from Select Location -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="#CCCCCC" />
+
+    <!-- Bottom primary action button -->
+    <Button
+        android:id="@+id/select_location_button"
+        style="@style/PrimaryActionButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/select_location_button" />
+
+</LinearLayout>
